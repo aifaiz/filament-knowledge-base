@@ -6,6 +6,7 @@
     $hasModalTitleBreadcrumbs = Filament::getPlugin('guava::filament-knowledge-base')->hasModalTitleBreadcrumbs();
     $target = Filament::getPlugin('guava::filament-knowledge-base')->shouldOpenDocumentationInNewTab() ? '_blank' : '_self';
     $articleClass = \Guava\FilamentKnowledgeBase\Facades\KnowledgeBase::panel()->getArticleClass();
+    $hasFooter = false;
 @endphp
 
 <div
@@ -39,6 +40,7 @@
         ])>
                 {!! $documentable->getSimpleHtml() !!}
             </x-filament-knowledge-base::content>
+            @if($hasFooter)
             <x-slot name="footerActions">
                 <x-filament::button tag="a"
                                     :href="$documentable->getUrl()"
@@ -51,6 +53,7 @@
                     {{ __('filament-knowledge-base::translations.close') }}
                 </x-filament::button>
             </x-slot>
+            @endif
         </x-filament::modal>
     @endif
 </div>
